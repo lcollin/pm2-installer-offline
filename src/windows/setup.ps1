@@ -1,4 +1,13 @@
+param (
+  [switch] $offline
+)
+
 Write-Host "=== Setup ==="
+if ($offline) {
+  Write-Host "Offline is set to true. This setup will NOT attempt an internet-connected install first."
+} else {
+  Write-Host "Offline is set to false. This setup will attempt an internet-connected install first."
+}
 
 # Load the latest path
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
@@ -22,13 +31,13 @@ if ($continue -eq 'n') {
 
 # Install all required npm packages
 # Use local offline install bundle if possible, but fallback to online installation
-& .\src\windows\setup-packages.ps1
+& .\src\windows\setup-packages.ps1 -offline $offline
 
 # Install service that runs pm2
 & .\src\windows\setup-service.ps1
 
 # Add the logrotate module
-& .\src\windows\setup-logrotate.ps1
+& .\src\windows\setup-logrotate.ps1 -offline $offline
 
 Write-Host "=== Setup Complete ===`n"
 

@@ -6,6 +6,12 @@ const https = require('https');
 
 const host = 'registry.npmjs.org';
 
+const [runMode] = process.argv.slice(2);
+if (runMode === "offline") {
+  console.log('Running in offline mode. Will not attempt to check npm registry connectivity.');
+  process.exit(1);
+}
+
 console.log('Checking connectivity to the npm registry..');
 
 const request = https.request(
