@@ -1,7 +1,11 @@
 Write-Host "=== Adding Log Rotation ==="
 
 # Check connectivity to registry.npmjs.org
-node src\tools\npm-online.js
+if ($offline) {
+  node src\tools\npm-online.js offline
+} else {
+  node src\tools\npm-online.js
+}
 
 if ($? -eq $True) {
 

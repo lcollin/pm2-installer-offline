@@ -20,7 +20,11 @@ Write-Host " $pm2_logrotate_package"
 Write-Host " $node_windows_package"
 
 # Check connectivity to registry.npmjs.org
-node src\tools\npm-online.js
+if ($offline) {
+  node src\tools\npm-online.js offline
+} else {
+  node src\tools\npm-online.js
+}
 
 if ($? -eq $True) {
 
