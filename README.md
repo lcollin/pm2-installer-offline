@@ -65,7 +65,7 @@ This will populate the cache in the project's directory with the resources requi
 npm run setup
 ```
 
-`pm2-installer` will check if it cans contact the npm registry and install online if possible, or use the offline cache if not.
+`pm2-installer` will check if it can contact the npm registry and install online if possible, or use the offline cache if not.
 
 ### Forced Offline Install
 To force an offline install and not first attempt to contact the npm registry, follow the instructions above but instead of running `npm run setup`, run:
