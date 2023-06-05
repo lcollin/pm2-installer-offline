@@ -26,7 +26,7 @@ if ($? -eq $True) {
 
   Set-Location $logrotate_directory
 
-  pm2 install . --silent
+  pm2 install . -no-daemon
 
   # Go back to where we were
   Set-Location $wd
